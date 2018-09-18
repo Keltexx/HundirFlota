@@ -104,13 +104,13 @@ public class Juego {
 		 */
 		private void anyadeGrid(int nf, int nc) {	//TODO
 			JPanel cuadr = new JPanel();
-			GridLayout experimentLayout = new GridLayout(nf,nc);
+			GridLayout experimentLayout = new GridLayout(nf+1,nc+2);
 			JLabel letraLabel;
 			JLabel numeroLabel;
 			cuadr.setLayout(experimentLayout);
 			
 			for(int i=0; i<nf+1; i++){
-				for(int j=0; j<nc+1; j++){
+				for(int j=0; j<nc+2; j++){
 					if((i==0&&j==0)||(i==0&&j==nc+1))
 						cuadr.add(numeroLabel = new JLabel("   "));
 					else if(i==0 &&j >=1)
