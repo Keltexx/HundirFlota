@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.*;
 
 public class Juego {
@@ -82,8 +83,17 @@ public class Juego {
 		/**
 		 * Anyade el menu de opciones del juego y le asocia un escuchador
 		 */
-		private void anyadeMenu() {
-            // POR IMPLEMENTAR
+		private void anyadeMenu() {	//TODO
+            JMenuBar menu = new JMenuBar();
+            JMenu opciones = new JMenu("Opciones");
+            JMenuItem solucion = new JMenuItem("Mostrar solución");
+            JMenuItem nueva = new JMenuItem("Nueva partida");
+            JMenuItem salir = new JMenuItem("Salir");
+            opciones.add(solucion);
+            opciones.add(nueva);
+            opciones.add(salir);
+            menu.add(opciones);
+            frame.add(menu, BorderLayout.NORTH);
 		} // end anyadeMenu
 
 		/**
@@ -92,8 +102,27 @@ public class Juego {
 		 * @param nf	numero de filas
 		 * @param nc	numero de columnas
 		 */
-		private void anyadeGrid(int nf, int nc) {
-            // POR IMPLEMENTAR
+		private void anyadeGrid(int nf, int nc) {	//TODO
+			JPanel cuadr = new JPanel();
+			GridLayout experimentLayout = new GridLayout(nf,nc);
+			JLabel letraLabel;
+			JLabel numeroLabel;
+			cuadr.setLayout(experimentLayout);
+			
+			for(int i=0; i<nf+1; i++){
+				for(int j=0; j<nc+1; j++){
+					if((i==0&&j==0)||(i==0&&j==nc+1))
+						cuadr.add(numeroLabel = new JLabel("   "));
+					else if(i==0 &&j >=1)
+						cuadr.add(numeroLabel = new JLabel("   "+j));
+					else if(j==0 || j==nc+1)
+						cuadr.add(numeroLabel = new JLabel("   "+Character.toString((char)('A'+i-1))));
+					else
+						cuadr.add(new JButton());
+				}
+				
+			}
+			frame.add(cuadr);
 		} // end anyadeGrid
 
 
@@ -208,3 +237,4 @@ public class Juego {
 
 
 } // end class Juego
+
