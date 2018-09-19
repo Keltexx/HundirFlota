@@ -50,8 +50,23 @@ public class Partida {
 	 * @return		resultado de marcar la casilla: AGUA, ya TOCADO, ya HUNDIDO, identidad del barco recien hundido
 	 */	
     public int pruebaCasilla(int f, int c) {
-        // POR IMPLEMENTAR
-    	return 0;
+        if(mar[f][c]>=0 ) {
+        	int id=mar[f][c];
+        	if(!barcos.get(mar[f][c]).tocaBarco())
+        		mar[f][c]=TOCADO;
+        	else {
+        		if(barcos.get(id).getOrientacion()=='V') {
+        			for(int i = f;i<barcos.get(id).getTamanyo();i++)
+        				mar[i][barcos.get(id).getColumnaInicial()]=HUNDIDO;
+        		}else {
+        			for(int i = c;i<barcos.get(id).getTamanyo();i++)
+        				mar[barcos.get(id).getFilaInicial()][i]=HUNDIDO;
+        		}
+        		return id;
+        	}
+        	
+        }
+        return mar[f][c];
     }
     
 
@@ -62,8 +77,7 @@ public class Partida {
 	 * @return	        cadena con los datos del barco
 	 */	
 	public String getBarco(int idBarco) {
-        // POR IMPLEMENTAR
-		return null;
+		return barcos.get(idBarco).toString();
 	}
 	
 	/**
@@ -71,8 +85,10 @@ public class Partida {
 	 * @return	vector de cadenas, una por barco con la informacion de getBarco
 	 */	
 	public String[] getSolucion() {
-        // POR IMPLEMENTAR
-		return null;
+		String[] solucion = new String[this.numBarcos];
+		for(int i=0;i<this.numBarcos;i++)
+			solucion[i]=getBarco(i);
+		return solucion;
 	}
     
 

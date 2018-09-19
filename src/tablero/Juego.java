@@ -84,11 +84,20 @@ public class Juego {
 		 * Anyade el menu de opciones del juego y le asocia un escuchador
 		 */
 		private void anyadeMenu() {	//TODO
-            JMenuBar menu = new JMenuBar();
+			//Creacion de opciones del menu
+            JMenuBar menu = new JMenuBar();	
             JMenu opciones = new JMenu("Opciones");
-            JMenuItem solucion = new JMenuItem("Mostrar soluci�n");
+            JMenuItem solucion = new JMenuItem("Mostrar solucion");
             JMenuItem nueva = new JMenuItem("Nueva partida");
             JMenuItem salir = new JMenuItem("Salir");
+            
+            //Llamada al escuchador con cada opcion del menu
+            MenuListener escuchador = new MenuListener();
+            solucion.addActionListener(escuchador);
+            nueva.addActionListener(escuchador);
+            salir.addActionListener(escuchador);
+            
+            //Añade las opciones a la ventana
             opciones.add(solucion);
             opciones.add(nueva);
             opciones.add(salir);
@@ -104,18 +113,18 @@ public class Juego {
 		 */
 		private void anyadeGrid(int nf, int nc) {	//TODO
 			JPanel cuadr = new JPanel();
-			GridLayout experimentLayout = new GridLayout(nf,nc);
+			GridLayout experimentLayout = new GridLayout(nf+1,nc+2);
 			JLabel letraLabel;
 			JLabel numeroLabel;
 			cuadr.setLayout(experimentLayout);
 			
-			for(int i=0; i<nf+1; i++){
-				for(int j=0; j<nc+1; j++){
-					if((i==0&&j==0)||(i==0&&j==nc+1))
+			for(int i=0; i<nf+1; i++){	//Recorre las filas de la matriz
+				for(int j=0; j<nc+2; j++){	//Recorre las columnas de la matriz
+					if((i==0 && j==0)||(i==0 && j==nc+1))	//Añade espacio en blanco en la primera y ultima casilla de la primera fila
 						cuadr.add(numeroLabel = new JLabel("   "));
-					else if(i==0 &&j >=1)
+					else if(i==0 && j >=1)	//Numera las columnas en la primera fila
 						cuadr.add(numeroLabel = new JLabel("   "+j));
-					else if(j==0 || j==nc+1)
+					else if(j==0 || j==nc+1)	//Numera mediante letras las filas al principio y al final
 						cuadr.add(numeroLabel = new JLabel("   "+Character.toString((char)('A'+i-1))));
 					else
 						cuadr.add(new JButton());
@@ -149,7 +158,12 @@ public class Juego {
 		/**
 		 * Muestra la solucion de la partida y marca la partida como finalizada
 		 */
-		public void muestraSolucion() {
+		public void muestraSolucion() {	//TODO
+//			for (int i = 0; i < numFilas; i++) {
+//				for (int j = 0; j < numColumnas; j++) {
+//					buttons[i][j].pintaBoton();
+//				}
+//			}
             // POR IMPLEMENTAR
 		} // end muestraSolucion
 
@@ -159,8 +173,15 @@ public class Juego {
 		 * @param cadenaBarco	cadena con los datos del barco codifificados como
 		 *                      "filaInicial#columnaInicial#orientacion#tamanyo"
 		 */
-		public void pintaBarcoHundido(String cadenaBarco) {
-            // POR IMPLEMENTAR
+		public void pintaBarcoHundido(String cadenaBarco) {	//TODO
+//			String[] parts = cadenaBarco.split("#");
+//			String filaInicial = parts[0];
+//			String columnaInicial = parts[1];     
+//			String orientacion = parts[2];     
+//			String tamanyo = parts[3];  
+
+			
+			
 		} // end pintaBarcoHundido
 
 		/**
@@ -209,10 +230,24 @@ public class Juego {
 	private class MenuListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-            // POR IMPLEMENTAR
-		} // end actionPerformed
-
+		public void actionPerformed(ActionEvent e) {	//TODO
+			switch(e.getActionCommand()){
+			case "Salir": 
+				guiTablero.liberaRecursos();
+				break;
+			case "Mostrar solucion":
+				System.out.println("Esta es la solucion");
+				guiTablero.muestraSolucion();
+				break;
+			case "Nueva partida":
+				System.out.println("Vuelve a empezar la partida");
+				guiTablero.limpiaTablero();
+				break;				
+			default:
+				break;
+			} //end switch
+			
+		} //end actionPerformed
 	} // end class MenuListener
 
 
@@ -226,15 +261,33 @@ public class Juego {
 	 * de los componentes, apoyandose en los metodos putClientProperty y getClientProperty
 	 */
 	private class ButtonListener implements ActionListener {
-
 		@Override
-		public void actionPerformed(ActionEvent e) {
-            // POR IMPLEMENTAR
+		public void actionPerformed(ActionEvent e) {	//TODO
+			Object boton;
+			switch(e.getActionCommand()){
+//				case "":
+//					Partida partida = new Partida();
+//					if (partida.pruebaCasilla(f, c)==-1) {	//AGUA	
+//						pintarBoton
+//					}
+//					else if (partida.pruebaCasilla(f, c)==-2) {	//TOCADO
+//						
+//					}
+//					
+//					else if (partida.pruebaCasilla(f, c)==-3) {	//HUNDIDO
+//						
+//					}
+//					break;
+//				case ":":
+//					break;
+//				
+			} //end switch
+			
         } // end actionPerformed
 
 	} // end class ButtonListener
 
-
+	
 
 } // end class Juego
 
