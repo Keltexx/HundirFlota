@@ -54,7 +54,7 @@ public class Partida {
         	int id=mar[f][c];						// guardo su id para devolverlo en caso de hundirse
         	if(!barcos.get(mar[f][c]).tocaBarco())	//si no esta hundido cambio de id a tocado
         		mar[f][c]=TOCADO;
-        	else {									//si se hunde pinto de rojo el barco correspondiente y devuelvo su id
+        	else {									//si se hunde cambio sus casillas a HUNDIDO el barco correspondiente y devuelvo su id
         		if(barcos.get(id).getOrientacion()=='V') {
         			for(int i = f;i<barcos.get(id).getTamanyo();i++)
         				mar[i][barcos.get(id).getColumnaInicial()]=HUNDIDO;
@@ -65,7 +65,7 @@ public class Partida {
         		return id;
         	}
         	
-        }
+        }						//en caso de no ser barco es agua y no es ncesario modificarlo
         return mar[f][c];		//devuelvo el resultado de disparar en la casilla correspondiente
     }
     
