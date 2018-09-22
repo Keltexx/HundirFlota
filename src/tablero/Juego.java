@@ -166,6 +166,18 @@ public class Juego {
 		 * Muestra la solucion de la partida y marca la partida como finalizada
 		 */
 		public void muestraSolucion() {	//TODO
+			quedan=0;
+			for (int i = 0; i < numFilas; i++) {
+				for (int j = 0; j < numColumnas; j++){
+					int toque = partida.pruebaCasilla(i, j);
+					if(toque==-1) {
+						guiTablero.pintaBoton(guiTablero.buttons[i][j],Color.cyan);
+					}else {
+						guiTablero.pintaBoton(guiTablero.buttons[i][j],Color.magenta);
+					}
+				}
+			}
+			
 			
 		} // end muestraSolucion
 
