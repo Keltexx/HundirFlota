@@ -50,11 +50,11 @@ public class Partida {
 	 * @return		resultado de marcar la casilla: AGUA, ya TOCADO, ya HUNDIDO, identidad del barco recien hundido
 	 */	
     public int pruebaCasilla(int f, int c) {
-        if(mar[f][c]>=0 ) {
-        	int id=mar[f][c];
-        	if(!barcos.get(mar[f][c]).tocaBarco())
+        if(mar[f][c]>=0 ) { 						//compruebo que la casilla es un barco
+        	int id=mar[f][c];						// guardo su id para devolverlo en caso de hundirse
+        	if(!barcos.get(mar[f][c]).tocaBarco())	//si no esta hundido cambio de id a tocado
         		mar[f][c]=TOCADO;
-        	else {
+        	else {									//si se hunde pinto de rojo el barco correspondiente y devuelvo su id
         		if(barcos.get(id).getOrientacion()=='V') {
         			for(int i = f;i<barcos.get(id).getTamanyo();i++)
         				mar[i][barcos.get(id).getColumnaInicial()]=HUNDIDO;
@@ -66,7 +66,7 @@ public class Partida {
         	}
         	
         }
-        return mar[f][c];
+        return mar[f][c];		//devuelvo el resultado de disparar en la casilla correspondiente
     }
     
 
@@ -77,7 +77,7 @@ public class Partida {
 	 * @return	        cadena con los datos del barco
 	 */	
 	public String getBarco(int idBarco) {
-		return barcos.get(idBarco).toString();
+		return barcos.get(idBarco).toString();			
 	}
 	
 	/**
@@ -85,10 +85,10 @@ public class Partida {
 	 * @return	vector de cadenas, una por barco con la informacion de getBarco
 	 */	
 	public String[] getSolucion() {
-		String[] solucion = new String[this.numBarcos];
-		for(int i=0;i<this.numBarcos;i++)
+		String[] solucion = new String[this.numBarcos]; 	//creo el vector de barcos
+		for(int i=0;i<this.numBarcos;i++)					//recorro el vector y uso getBarco(i) para guardar las soluciones
 			solucion[i]=getBarco(i);
-		return solucion;
+		return solucion;									//devuelvo el vector
 	}
     
 
