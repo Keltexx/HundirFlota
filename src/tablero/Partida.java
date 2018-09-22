@@ -65,7 +65,7 @@ public class Partida {
         		return id;
         	}
         	
-        }						//en caso de no ser barco es agua y no es ncesario modificarlo
+        }						//en caso de no ser barco es agua y no es necesario modificarlo
         return mar[f][c];		//devuelvo el resultado de disparar en la casilla correspondiente
     }
     
