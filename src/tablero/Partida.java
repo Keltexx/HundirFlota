@@ -3,6 +3,7 @@ package tablero;
 import java.util.Random;
 import java.util.Vector;
 
+
 public class Partida {
 	
 	public static final int AGUA = -1, TOCADO = -2, HUNDIDO = -3;
